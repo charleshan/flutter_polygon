@@ -1,3 +1,7 @@
+## 0.3.0+2
+
+* Added example again
+
 ## 0.3.0+1
 
 * Formatting
