@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_polygon/flutter_polygon.dart';
 
 void main() => runApp(ExampleApp());
@@ -31,23 +32,20 @@ class _ExampleAppState extends State<ExampleApp> {
     return MaterialApp(
       home: Scaffold(
         extendBody: true,
-
         appBar: AppBar(
           title: Text('Flutter Polygon'),
           backgroundColor: Colors.blue[900],
-          brightness: Brightness.dark,
+          systemOverlayStyle: SystemUiOverlayStyle.light,
         ),
-
         floatingActionButton: FloatingActionButton(
           onPressed: () => {},
           shape: PolygonBorder(sides: nb),
           child: Icon(Icons.star),
         ),
-
         bottomNavigationBar: BottomAppBar(
           shape: AutomaticNotchedShape(
-              RoundedRectangleBorder(),
-              PolygonBorder(sides: nb)
+            RoundedRectangleBorder(),
+            PolygonBorder(sides: nb),
           ),
           color: Colors.orange,
           notchMargin: 6.0,
@@ -66,9 +64,7 @@ class _ExampleAppState extends State<ExampleApp> {
             ],
           ),
         ),
-
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-
         body: Container(
           child: SingleChildScrollView(
             padding: const EdgeInsets.only(bottom: 96.0),
@@ -76,21 +72,18 @@ class _ExampleAppState extends State<ExampleApp> {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-
                 const SizedBox(height: 8.0,),
                 Text(
                   'Chips',
                   style: Theme.of(context).textTheme.headline6
                 ),
                 _showCase(nbs.map(_chip)),
-
                 const SizedBox(height: 8.0,),
                 Text(
                     'Buttons',
                     style: Theme.of(context).textTheme.headline6
                 ),
                 _showCase(nbs.map(_button)),
-
                 const SizedBox(height: 8.0,),
                 Text(
                     'Containers',
@@ -99,7 +92,6 @@ class _ExampleAppState extends State<ExampleApp> {
                 _showCase(nbs.map(_container)),
                 _showCase(nbs.map((nb) => _container(nb, width: 2, rotate: 15.0))),
                 _showCase(nbs.map((nb) => _container(nb, width: 3, rotate: 30.0))),
-
                 const SizedBox(height: 8.0,),
                 Text(
                     'Clipped Image',
@@ -175,13 +167,15 @@ class _ExampleAppState extends State<ExampleApp> {
       padding: EdgeInsets.all(18.0),
       margin: EdgeInsets.only(right: 16.0),
       decoration: ShapeDecoration(
-          shape: PolygonBorder(
-              sides: sides,
-              rotate: rotate,
-              side: BorderSide(
-                color: colors[index % colors.length],
-                width: width,
-              ))),
+        shape: PolygonBorder(
+          sides: sides,
+          rotate: rotate,
+          side: BorderSide(
+            color: colors[index % colors.length],
+            width: width,
+          ),
+        ),
+      ),
       child: Text('$sides'),
     );
   }

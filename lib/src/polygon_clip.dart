@@ -17,14 +17,14 @@ class ClipPolygon extends StatelessWidget {
   /// Provide a [borderRadius] to set the radius of the corners.
   ///
   /// The [sides] argument must be at least 3.
-  ClipPolygon(
-      {Key? key,
-      required this.sides,
-      this.rotate: 0.0,
-      this.borderRadius: 0.0,
-      this.boxShadows: const [],
-      this.child})
-      : assert(sides >= 3),
+  const ClipPolygon({
+    Key? key,
+    required this.sides,
+    this.rotate = 0.0,
+    this.borderRadius = 0.0,
+    this.boxShadows = const [],
+    this.child,
+  })  : assert(sides >= 3),
         super(key: key);
 
   @override
@@ -36,13 +36,15 @@ class ClipPolygon extends StatelessWidget {
     );
 
     return AspectRatio(
-        aspectRatio: 1.0,
-        child: CustomPaint(
-            painter: PolygonBoxShadowPainter(specs, boxShadows),
-            child: ClipPath(
-              clipper: PolygonClipper(specs),
-              child: child,
-            )));
+      aspectRatio: 1.0,
+      child: CustomPaint(
+        painter: PolygonBoxShadowPainter(specs, boxShadows),
+        child: ClipPath(
+          clipper: PolygonClipper(specs),
+          child: child,
+        ),
+      ),
+    );
   }
 }
 
@@ -51,7 +53,7 @@ class PolygonClipper extends CustomClipper<Path> {
   final PolygonPathSpecs specs;
 
   /// Create a polygon clipper with the provided specs.
-  PolygonClipper(this.specs);
+  const PolygonClipper(this.specs);
 
   @override
   Path getClip(Size size) {
@@ -70,15 +72,15 @@ class PolygonBoxShadowPainter extends CustomPainter {
   final List<PolygonBoxShadow> boxShadows;
 
   /// Creates a polygon shaped shadow
-  PolygonBoxShadowPainter(this.specs, this.boxShadows);
+  const PolygonBoxShadowPainter(this.specs, this.boxShadows);
 
   @override
   void paint(Canvas canvas, Size size) {
     Path path = PolygonPathDrawer(size: size, specs: specs).draw();
 
-    boxShadows.forEach((PolygonBoxShadow shadow) {
+    for (final shadow in boxShadows) {
       canvas.drawShadow(path, shadow.color, shadow.elevation, false);
-    });
+    }
   }
 
   @override
