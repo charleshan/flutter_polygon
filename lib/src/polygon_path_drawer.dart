@@ -90,6 +90,6 @@ class PolygonPathSpecs {
     required this.sides,
     required this.rotate,
     required this.borderRadiusAngle,
-  })   : halfBorderRadiusAngle = borderRadiusAngle / 2,
+  })  : halfBorderRadiusAngle = borderRadiusAngle / 2,
         assert(sides >= 3);
 }

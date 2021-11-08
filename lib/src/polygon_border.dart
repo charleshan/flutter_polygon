@@ -124,12 +124,12 @@ class PolygonBorder extends OutlinedBorder {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is PolygonBorder &&
-              runtimeType == other.runtimeType &&
-              sides == other.sides &&
-              side == other.side &&
-              rotate == other.rotate &&
-              borderRadius == other.borderRadius;
+      other is PolygonBorder &&
+          runtimeType == other.runtimeType &&
+          sides == other.sides &&
+          side == other.side &&
+          rotate == other.rotate &&
+          borderRadius == other.borderRadius;
 
   @override
   OutlinedBorder copyWith({BorderSide? side}) {
