@@ -17,7 +17,10 @@ class PolygonPathDrawer {
   Path draw() {
     final anglePerSide = 360 / specs.sides;
 
-    final radius = (size.width - specs.borderRadiusAngle) / 2;
+    // Original implementation
+    // final radius = (size.width - specs.borderRadiusAngle) / 2;
+    // New implementation. Need to check the math
+    final radius = size.width / 2;
     final arcLength =
         (radius * _angleToRadian(specs.borderRadiusAngle)) + (specs.sides * 2);
 
@@ -71,8 +74,13 @@ class PolygonPathDrawer {
     final rotationAwareAngle = angle - 90 + specs.rotate;
 
     final radian = _angleToRadian(rotationAwareAngle);
-    final x = cos(radian) * radius + radius + specs.halfBorderRadiusAngle;
-    final y = sin(radian) * radius + radius + specs.halfBorderRadiusAngle;
+
+    //Original implementation
+    // final x = cos(radian) * radius + radius + specs.halfBorderRadiusAngle;
+    // final y = sin(radian) * radius + radius + specs.halfBorderRadiusAngle;
+    // New implementation. Need to check the math
+    final x = cos(radian) * radius + radius;
+    final y = sin(radian) * radius + radius;
 
     return Offset(x, y);
   }
